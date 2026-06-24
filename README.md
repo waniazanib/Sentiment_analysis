@@ -1,134 +1,141 @@
-# 🔍 Insights — AI-Product Analysis & Community Sentiment Engine
+![Banner](assets/insights_banner.jpg)
 
-**Insights** is a comprehensive, full-stack product analysis and sentiment aggregation dashboard. It automatically digests across Wikipedia specifications, expert technical articles, Youtube discussions, and user reviews, utilizing the Google Gemini API to produce instant, verified community sentiment breakdowns. Instead of manually traversing forums, videos, and articles, users get structured, reliable, and side-by-side comparative buyer diagnostics in seconds.
+![NLP](https://img.shields.io/badge/Task-Aspect_Based_Sentiment_Analysis_(ABSA)-blueviolet)
+![Subtask](https://img.shields.io/badge/NLP_Task-Opinion_Mining_%26_Topic_Extraction-orange)
+![Engine](https://img.shields.io/badge/Heuristic_Engine-Client--Safe_Dynamic_Rule_NLP-darkgreen)
+![Data Pipeline](https://img.shields.io/badge/Pipeline-Deterministic%20Unstructured%20Parsing-blue)
+![Confidence Metric](https://img.shields.io/badge/Metric-Confidence%20Scoring-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
----
-
-## 🚀 Key Features
-
-- **Multi-Source Web Crawling & Inflow**
-  - **Factual Specifications Retrieval**: Ingests direct hardware specifications, categories, metadata, and manufacturers via the **Wikipedia API**.
-  - **Multimedia Review Analytics**: Fetches community-created video feeds, sentiment transcripts, metadata, and engagements via **YouTube API integration**.
-  - **Open Discussions**: Connects with **OpenReview Platform APIs** to surface multi-source expert reviews and deep-dive community feedback.
-
-- **Generative AI Diagnostics (Powered by Gemini)**
-  - **Topic Aspect Mapping**: Extracts key product features (e.g., sound quality, battery reserve, ergonomic layout).
-  - **Sentiment Processing**: Visualizes overall community sentiment distributions into positive, neutral, and negative segments.
-  - **Pro/Con Categorization**: Automatically filters real user friction points and wins into distinct, honest summary cards.
-  - **Segmented Recommendations**: Delivers smart `BUY`/`HOLD`/`DEPENDS` buying recommendations personalized for specific consumer personas (e.g., Power Users, Budget Valuators) alongside viable direct alternatives.
-
-- **Dynamic Contrast Comparison Matrix**
-  - Save multiple analyzed products to a side-by-side comparison screen.
-  - Compares detailed specs, sentiment weights, recommendations, and automatically generates an AI-led comparison summary contrast.
-
-- **Highly Fault-Tolerant Hybrid Cache**
-  - Powered by **Supabase PostgreSQL** for durable historical queries, indexing, and persistent catalog storage.
-  - Seamlessly falls back to an optimized **in-memory offline cache mapper** in local or sandbox mode to ensure instantaneous response times under key constraint states.
+**Insights** is a specialized, full-stack Natural Language Processing (NLP) dashboard designed for **opinion mining**, **topic extraction**, and **Aspect-Based Sentiment Analysis (ABSA)** simulation on consumer electronics. The engine ingests heterogeneous unstructured text data across multiple web source corpora (factual wikis, multimedia review commentaries, and expert discussions) and routes them through a deterministic, high-fidelity rule-based text processing engine. It performs complex sentiment parsing and aspect-level polarity breakdowns 100% locally and offline without requiring external API keys.
 
 ---
 
-## 🛠️ Technological Stack
+## 🔬 NLP & Architectural Highlights
 
-- **Frontend Core**: React (v19) with JSX, TypeScript, and modern styling.
-- **Styling & Visuals**: Tailwind CSS, Recharts (responsive custom visualizations), Framer Motion (animated entry and transitions), and Lucide React (elegant UI indicators).
-- **Backend Architecture**: Node.js, Express.js API proxying server, TypeScript runner (`tsx`), and structured production compiling (`esbuild` bundler producing a self-contained CommonJS entry file).
-- **Core AI Integration**: Modern `@google/genai` TypeScript SDK utilizing high-fidelity Gemini models.
-- **Persistence Layer**: `@supabase/supabase-js` connector with full SQL schema triggers, relations, and table constraints.
+- **Rule-Based Aspect-Based Sentiment Analysis (ABSA)**: Rather than relying on external web model requests or APIs, the service parses textual reviews directly using advanced regex patterns and lexical rule-based matching. It isolates specific product aspects (such as `Sound Fidelity`, `Battery Life`, and `Ergonomics`) and evaluates localized polarity indices.
+- **Lexical Opinion Mining**: Automatically scans unstructured texts to locate high-frequency noun-adjective pairs and maps key discussion topics with representative sentences extracted directly from the corpus.
+- **Client-Safe Simulation**: Implemented with a highly resilient offline parser designed for instant, zero-cost processing. It provides robust, deterministic outputs and eliminates network-bound timeouts, runtime API key dependencies, and high latency.
+- **Rigorous Confidence Scoring**: Employs a heuristic confidence calculator based on source coverage—weighting distinct discourse contributions across reviews, articles, videos, and specifications to gauge analysis completeness.
+
+---
+
+## 🚀 Key Modules & Features
+
+### 1. Heterogeneous Corpus Ingestion
+- **Factual Reference Extraction**: Ingests direct hardware specifications and manufacturer metadata via a structured **Wikipedia API parser**.
+- **Multimedia Sentiment Ingestion**: Gathers video comments, transcription snippets, engagement rates, and viewer interactions from the **YouTube Data API**.
+- **Expert Review Harvesting**: Connects with the **OpenReview API** to fetch high-density expert commentary, critical analyses, and academic/professional product reviews.
+
+### 2. Deterministic NLP Analyzer (Heuristic Classifier)
+- **Aspect Salience Mapping**: Counts and weights the relative dominance of feature topics in the discourse pool.
+- **Sentiment & Polarity Distribution**: Visualizes relative positive, neutral, and negative segments across the ingested text.
+- **Target Audience Inference**: Mappings correlate extracted specs and sentiment scores to categorize product alignment against targeted user personas (e.g., Frequent Travelers, Audio Audiophiles).
+ 
+![Banner](assets/Sentiment_Index.png)
+![Banner](assets/Recommendation.png)
+![Banner](assets/Sentiment_analysis.png)
+
+
+
+### 3. Contrast Comparison Matrix
+- Compare up to 3 analyzed products side-by-side.
+- Contrasts dynamic specifications, calculates margin victories, and triggers analytical comparison lists.
+
+![Comparison](assets/Comparison_table.png)
+
+### 4. Hybrid Persistence & Cache Layer
+- Driven by a durable **Supabase PostgreSQL** database for indexing, fast analytical searches, and persistent cache storage.
+- Includes a robust **in-memory local cache controller** fallback that ensures seamless dashboard execution even in isolated local-first modes.
 
 ---
 
 ## 📂 Project Directory Structure
 
 ```text
-├── server.ts                       # Backend entry point (Express, Vite Dev Middleware, & Proxy Endpoints)
-├── index.html                      # Single-page application template
-├── tsconfig.json                   # TypeScript project ruleset
-├── vite.config.ts                  # Vite build-time assets configuration
-├── vitest.config.ts                # Framework configuration and test-runners
-├── package.json                    # Dependents, build scripts, development tools
-├── supabase/                       # Supabase migration scripts and database schemas
+├── server.ts                       # Express backend, Vite Dev Middleware, & NLP pipeline endpoints
+├── index.html                      # Single-page application entry template
+├── tsconfig.json                   # TypeScript compiling configuration
+├── vite.config.ts                  # Vite build-time assets pipeline configuration
+├── vitest.config.ts                # Test runner configuration
+├── package.json                    # Dependencies, scripts, and build tools
+├── supabase/                       # Supabase migration scripts and SQL schema triggers
 │   └── migrations/
 │       └── 20260603000000_init_schema.sql
 ├── src/
-│   ├── main.tsx                    # React client entry mount point
+│   ├── main.tsx                    # React client mounting node
 │   ├── index.css                   # Global Tailwind CSS style declarations
-│   ├── App.tsx                     # Core React layouts, state models, and routes routing
-│   ├── types.ts                    # Central TypeScript interfaces & entity schemas
-│   ├── components/                 # Presentation-driven JSX modules
-│   │   ├── SearchBar.tsx           # Search input bar with trend recommendations
-│   │   ├── SummaryCard.tsx         # Ingested metadata, brand, specs, and status metrics
-│   │   ├── SentimentPieChart.tsx   # Recharts sentiment balance (Pro/Con/Neutral) visualization
-│   │   ├── ConfidenceCard.tsx      # Source index counts and platform citation indicators
-│   │   ├── ProsConsCard.tsx        # Highlighting wins and limitations in side-by-side cards
-│   │   ├── TopicAnalysisChart.tsx  # Dynamic bar dimensions mapping aspect frequency
-│   │   ├── RecommendationCard.tsx  # Interactive buy recommendation summary card
-│   │   └── ComparisonTable.tsx     # Parallel comparison matrix layout and AI contrasting
-│   └── services/                   # Modular API, Cache, and Model interaction clients
-│       ├── productAnalysisEngine.ts # Coordinating multi-service pipeline orchestrator
-│       ├── geminiService.ts        # Chat, sentiment analysis, topic extraction prompts
-│       ├── supabaseService.ts      # Cloud SQL (Postgre) caching client & in-memory backup
-│       ├── googleSearchService.ts  # Grounding search client
-│       ├── wikipediaService.ts     # Factual specifications extractor
-│       ├── openReviewService.ts    # Community discussions ingestor
-│       └── youtubeService.ts       # Video commentary processor
+│   ├── App.tsx                     # React UI container, dashboard routing, and search triggers
+│   ├── types.ts                    # Consolidated TypeScript entity schemas and NLP types
+│   ├── components/                 # Presentation-driven JSX visualizer components
+│   │   ├── SearchBar.tsx           # Search input bar with trend chips
+│   │   ├── SummaryCard.tsx         # Factual spec lists, manufacturer meta, and metrics
+│   │   ├── SentimentPieChart.tsx   # Recharts visualization of ABSA sentiment polarity percentages
+│   │   ├── ConfidenceCard.tsx      # Source volume metrics and discourse confidence score gauge
+│   │   ├── ProsConsCard.tsx        # Highlighting extracted pros/cons side-by-side
+│   │   ├── TopicAnalysisChart.tsx  # Dynamic bar chart displaying feature aspect frequencies
+│   │   ├── RecommendationCard.tsx  # Interactive persona-based recommendation cards
+│   │   └── ComparisonTable.tsx     # Side-by-side spec contrasts and generative synthesis
+│   └── services/                   # Modular API, Cache, and ML interaction clients
+│       ├── productAnalysisEngine.ts # Core pipeline orchestrator linking ingestion to analysis
+│       ├── geminiService.ts        # Fully offline dynamic local NLP simulation & sentiment mapping
+│       ├── supabaseService.ts      # Supabase PG cache client & in-memory backup state
+│       ├── googleSearchService.ts  # Web grounding search client
+│       ├── wikipediaService.ts     # Factual specs extractor
+│       ├── openReviewService.ts    # Unstructured review ingestor
+│       └── youtubeService.ts       # Video review corpus collector
 ```
 
 ---
 
 ## ⚙️ Environment Configurations
 
-The system retrieves API credentials on the server-side to guarantee client safety. Create a local `.env` configuration mapping the values:
+Define the following in your local `.env` file to support database caching and application routes:
 
 ```env
-# Google Gemini Access Key (Automatically synced inside AI Studio)
-GEMINI_API_KEY="your-gemini-api-key-here"
-
-# Canonical Site Hosted Link (Used for proxy setups and endpoints)
+# Canonical Site Hosted Link (Used for server-side redirection/origins)
 APP_URL="http://localhost:3000"
 
-# Optional Cloud Database URLs (Supabase backend)
+# Optional PostgreSQL Database Connection (Supabase Backend)
 VITE_SUPABASE_URL="https://your-supabase-project.supabase.co"
 SUPABASE_SERVICE_ROLE_KEY="your-supabase-service-role-key"
+
+# Supplementary Media & Search APIs (Optional fallbacks)
+GOOGLE_CUSTOM_SEARCH_KEY="your_google_custom_search_api_key"
+GOOGLE_CUSTOM_SEARCH_CX="your_google_search_engine_id"
+YOUTUBE_DATA_API_KEY="your_youtube_api_key"
+OPEN_REVIEW_API_KEY="your_open_review_api_key"
 ```
 
 ---
 
 ## 🏃 Run & Installation Sequence
 
-### 1. Prerequisite Installations
-Make sure to install the NPM packages configured inside the root directory manifest:
+### 1. Install Dependencies
+Initialize package packages mapped inside the root manifest:
 ```bash
 npm install
 ```
 
 ### 2. Launch Local Development
-Fire up the Vite development middleware and Express server concurrently through `tsx`:
+Launch Vite's development middleware and the Express NLP proxy server concurrently:
 ```bash
 npm run dev
 ```
-Open a browser tab directed to `http://localhost:3000` to interact with the service.
+Navigate your browser to `http://localhost:3000`.
 
 ### 3. Build & Production Deployment
-Compile and pack the React SPA client under standard optimize loaders and build a unified backend bundle for production:
+Compile the React SPA client and bundle the Express TypeScript server into an optimized CJS build using esbuild:
 ```bash
 npm run build
 npm run start
 ```
 
-### 4. Execute Tests
-Validate schemas, API interactions, and React module structures:
+### 4. Execute Test Suite
+Validate API payload mappings, pipeline helpers, and UI component render sequences:
 ```bash
 npm run test
 ```
-
----
-
-## 💡 Usage Walkthrough
-
-1. **Query**: Type any modern electronics brand and product model in the search bar (e.g., `Sony WH-1000XM6` or `iPhone 15`).
-2. **Analysis Ingest**: The backend concurrently polls Wikipedia, OpenReview, and YouTube APIs.
-3. **Sentiment Dashboard**: Real-time charts visualize user sentiment distribution and map primary highlight topics (e.g., Performance, Comfort, Cost-utility).
-4. **Contrast Comparisons**: Click **Add to Compare** on multiple models, then view side-by-side specifications, overall reviews count, and generative differences.
 
 ---
 
