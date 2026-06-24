@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  /* Vintage Earth flat colors variables * /
+  /* moss background & primaries */
+  --color-moss: #797d62;
+  /* secondary sage borders/divs */
+  --color-sage: #9b9b7a;
+  /* soft details brown */
+  --color-tan: #d9ae94;
+  /* warm fluff container background */
+  --color-parchment: #f1dca7;
+  /* gold stars & highlighting details */
+  --color-gold: #ffcb69;
+  /* orange warning indicators (clay) */
+  --color-clay: #d08c60;
+  /* core dark brown buttons & typography overlay */
+  --color-brown: #997b66;
+  
+  /* general container controls */
+  --color-charcoal: #232320;
+  --color-cream: #faf9f5;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e7e5dc;
+
+  /* Global typography pairings */
+  --font-family-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-family-system);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom layout wrappers */
+.themed-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.themed-card:hover {
+  border-color: var(--color-sage);
+}

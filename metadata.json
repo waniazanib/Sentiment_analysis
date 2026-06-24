@@ -1,0 +1,6 @@
+{
+  "name": "Insights",
+  "description": "An AI-powered product analysis tool that aggregates public reviews, sentiment, and recommendations to help users make quick buying decisions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
